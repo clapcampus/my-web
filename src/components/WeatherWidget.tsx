@@ -103,7 +103,12 @@ export default function WeatherWidget() {
                         <div className="bg-white/10 p-3 rounded-lg backdrop-blur-sm">
                             <p className="text-sm leading-relaxed">
                                 <span className="mr-1">👗</span>
-                                {aiRecommendation}
+                                {aiRecommendation.split(/(\*\*.*?\*\*)/).map((part, index) => {
+                                    if (part.startsWith('**') && part.endsWith('**')) {
+                                        return <span key={index} className="font-bold text-yellow-200">{part.slice(2, -2)}</span>;
+                                    }
+                                    return <span key={index}>{part}</span>;
+                                })}
                             </p>
                         </div>
                     )}
