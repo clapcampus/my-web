@@ -9,4 +9,7 @@ export interface TeamMember {
     email: string;
     description: string;
     tech_stack: string[];
+    gender?: string;
+    style?: string;
+    location?: string;
 }

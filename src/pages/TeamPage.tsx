@@ -3,7 +3,7 @@ import TeamMemberCard from '../components/TeamMemberCard';
 import { useTeamFilter } from '../hooks/useTeamFilter';
 
 export default function TeamPage() {
-    const { members, isOnlineFilter, toggleOnlineFilter } = useTeamFilter();
+    const { members, isOnlineFilter, toggleOnlineFilter, loading, error } = useTeamFilter();
     console.log('TeamPage rendered. Members:', members.length, 'Filter:', isOnlineFilter);
 
 
@@ -31,13 +31,27 @@ export default function TeamPage() {
                 </button>
             </div>
 
-            {members.length > 0 ? (
+            {loading && (
+                <div className="flex justify-center py-20">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+                </div>
+            )}
+
+            {error && (
+                <div className="text-center py-20">
+                    <p className="text-red-500 dark:text-red-400">{error}</p>
+                </div>
+            )}
+
+            {!loading && !error && members.length > 0 && (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {members.map(member => (
                         <TeamMemberCard key={member.id} member={member} />
                     ))}
                 </div>
-            ) : (
+            )}
+
+            {!loading && !error && members.length === 0 && (
                 <div className="text-center py-20 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-dashed border-gray-300 dark:border-gray-700">
                     <p className="text-gray-500 dark:text-gray-400">조건에 맞는 팀원이 없습니다.</p>
                 </div>

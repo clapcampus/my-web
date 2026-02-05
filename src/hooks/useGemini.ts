@@ -5,7 +5,7 @@ interface UseGeminiResult {
     recommendation: string | null;
     loading: boolean;
     error: string | null;
-    getRecommendation: (weatherDescription: string, temperature: number) => Promise<void>;
+    getRecommendation: (weatherDescription: string, temperature: number, gender?: string, style?: string) => Promise<void>;
 }
 
 export function useGemini(): UseGeminiResult {
@@ -14,7 +14,12 @@ export function useGemini(): UseGeminiResult {
     const [error, setError] = useState<string | null>(null);
     const [history, setHistory] = useState<string[]>([]);
 
-    const getRecommendation = async (weatherDescription: string, temperature: number) => {
+    const getRecommendation = async (
+        weatherDescription: string, 
+        temperature: number,
+        gender?: string,
+        style?: string
+    ) => {
         setLoading(true);
         setError(null);
         setRecommendation(null);
@@ -33,8 +38,13 @@ export function useGemini(): UseGeminiResult {
                 ? `\n이전에 추천한 스타일들입니다 (이 스타일들은 제외하고 추천해주세요): ${history.join(", ")}` 
                 : "";
 
+            const userContext = (gender && style) 
+                ? `사용자는 ${gender}이며, 평소 '${style}' 스타일을 선호합니다. 이 정보를 반영하여 추천해주세요.`
+                : "";
+
             const prompt = `
                 현재 날씨는 ${weatherDescription}이고, 기온은 ${temperature}도 입니다.
+                ${userContext}
                 이 날씨에 어울리는 옷차림을 한국어로 추천해주세요.
 
                 요구사항:

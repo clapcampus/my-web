@@ -4,6 +4,7 @@ import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
 import TeamPage from './pages/TeamPage';
 import WeatherPage from './pages/WeatherPage';
+import FashionPage from './pages/FashionPage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route index element={<HomePage />} /> {/* 기본 화면 */}
           <Route path="team" element={<TeamPage />} /> {/* "/team" 경로 */}
           <Route path="weather" element={<WeatherPage />} /> {/* "/weather" 경로 */}
+          <Route path="fashion" element={<FashionPage />} /> {/* "/fashion" 경로 */}
         </Route>
       </Routes>
     </BrowserRouter>
