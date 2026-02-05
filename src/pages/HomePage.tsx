@@ -1,6 +1,7 @@
 // src/pages/HomePage.tsx
 import Typewriter from '../components/Typewriter';
 import WindowSizeTracker from '../components/WindowSizeTracker';
+import WeatherWidget from '../components/WeatherWidget';
 
 export default function HomePage() {
     return (
@@ -26,10 +27,11 @@ export default function HomePage() {
 
             {/* Demo Section */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Weather Widget */}
+                <WeatherWidget />
+
                 {/* Effect Demo 1: Window Tracker */}
                 <WindowSizeTracker />
-
-
             </div>
         </div>
     );
