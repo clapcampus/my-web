@@ -7,6 +7,7 @@ export default function NavBar() {
         { name: '팀 소개', path: '/team' },
         { name: '날씨', path: '/weather' },
         { name: '패션 추천 ✨', path: '/fashion' },
+        { name: 'AI 스타일리스트 🤖', path: '/stylist' },
     ];
     console.log('NavBar rendering items:', navItems);
 

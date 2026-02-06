@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import TeamPage from './pages/TeamPage';
 import WeatherPage from './pages/WeatherPage';
 import FashionPage from './pages/FashionPage';
+import StylistPage from './pages/StylistPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="team" element={<TeamPage />} /> {/* "/team" 경로 */}
           <Route path="weather" element={<WeatherPage />} /> {/* "/weather" 경로 */}
           <Route path="fashion" element={<FashionPage />} /> {/* "/fashion" 경로 */}
+          <Route path="stylist" element={<StylistPage />} /> {/* "/stylist" 경로 */}
         </Route>
       </Routes>
     </BrowserRouter>
